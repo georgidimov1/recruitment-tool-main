@@ -1,0 +1,23 @@
+<div>
+  <label>Job title:</label><br>
+  <p> {{title}}</p> 
+  <br>
+  <label>Job description:</label>
+  <br>
+  <p>{{description}}<p>
+    <br>
+    <label>Candidates:</label>
+       <p>{{person.firstName}}</p>
+           <div>
+          <form action={{action}} method="POST">
+            <br>
+            <label id="add">Add candidates:</label>
+            <select name="selected" id="add">
+              {{#each persons}}
+              <option value={{_id}}>{{firstName}} {{lastName}}</option>
+              {{/each}}
+            </select>
+            <button class="btn" type="submit" >ADD</button>
+          </form>
+        </div>
+</div>

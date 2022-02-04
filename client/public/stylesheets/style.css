@@ -1,0 +1,50 @@
+button {
+  background-color: black;
+}
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ffa500;
+  background-color: black;
+}
+header a{
+  text-align: left;
+}
+
+a {
+  color: #ffa500;
+  font-size: 20 px;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+table, th, td {
+  border: 1px solid #ffa500;
+  border-collapse: collapse;
+  padding: 0.5em;
+  text-align: center;
+ 
+}
+table{
+  width: 100%;
+}
+.btn {
+  width: 20%;
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #ffa500;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#ffa500;
+  text-align:center;
+  transition: all 0.2s;
+  }
+  .btn:hover{
+  color:#000000;
+  background-color:#ffa500;
+  }
+

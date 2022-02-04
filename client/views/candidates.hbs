@@ -1,0 +1,22 @@
+<div>
+<a class="btn" href='/candidates/create'>Create Candidate</a>
+</div> 
+<br>
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Details</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  {{#each data}}
+  <tr>
+    <td>{{firstName}}</td>
+    <td>{{lastName}}</td>
+    <td><a href='/candidates/details/{{_id}}'>details</i></a></td>
+    <td><a href='/candidates/update/{{_id}}'>update</a></td>
+    <td><a href='/candidates/delete/{{_id}}'>delete</a></td>
+  </tr>
+  {{/each}}
+</table>
