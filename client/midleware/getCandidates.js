@@ -1,7 +1,7 @@
 var services = require('../services/services.js')
   
-function getCandidates(req, res, next){    
-    services.getAll('candidates')
+async function getCandidates(req, res, next){    
+    await services.getAll('candidates')
     .then(x => {
        //console.log(x)
        res.locals.persons = x

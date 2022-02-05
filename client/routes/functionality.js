@@ -1,6 +1,6 @@
 var express = require('express');
 const getCandidates = require('../midleware/getCandidates.js');
-const getOneCandidate = require('../midleware/getOneCandidate.js')
+const addCandidate = require('../midleware/addCandidate.js')
 var router = express.Router();
 var services = require('../services/services.js')
 
@@ -40,16 +40,16 @@ router.get('/', function(req, res, next) {
     .catch(Error)
     res.redirect(`/${endpoint}`);
   });
-  router.get('/details/:_id', getCandidates, function(req, res, next, {}) {
+  router.get('/details/:_id', getCandidates, async function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
-    services.getOne(endpoint, req.params._id)
+    await services.getOne(endpoint, req.params._id)
     .then(x =>
-      {console.log('success')
-      res.render(`${endpoint}`+`Details`, { action: req.params._id, title: x.title , description: x.description, candidate: x.candidates, firstName: x.firstName, lastName: x.lastName, email: x.email })
+      {console.log(x)
+      res.render(`${endpoint}`+`Details`, { action: req.params._id, title: x.title , description: x.description, candidate: x.candidates, firstName: x.firstName, lastName: x.lastName, email: x.email, candidates: x.candidates})
     }
       )
   });
-  router.post('/details/:_id', getOneCandidate, function(req, res, next) {
+  router.post('/details/:_id', addCandidate, function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     // res.render(`${endpoint}`+`Details`, { person })
     // console.log("success");
@@ -59,7 +59,8 @@ router.get('/', function(req, res, next) {
     // services.edit (endpoint,req.params._id, req.body)
     // .then(x=>console.log(x.status))
     // .catch(Error)
-    res.redirect(`${endpoint}`);
+    console.log(endpoint)
+     res.redirect(`${req.params._id}`);
   });
  
   module.exports = router;

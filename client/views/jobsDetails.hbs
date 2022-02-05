@@ -7,7 +7,9 @@
   <p>{{description}}<p>
     <br>
     <label>Candidates:</label>
-       <p>{{person.firstName}}</p>
+    {{#each candidates}}
+       <p>{{candidatesId}}</p>
+    {{/each}}
            <div>
           <form action={{action}} method="POST">
             <br>
