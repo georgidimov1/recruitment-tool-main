@@ -28,11 +28,13 @@ router.get('/', function(req, res, next) {
     .catch(Error)
       res.redirect(`/${endpoint}`);
   });
+  /* render single entry jobs or candidates */
   router.get('/update/:_id', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     services.getOne(endpoint, req.params._id)
     .then(x => res.render(`${endpoint}`+'Create', { action:`${x._id}`, title: x.title , description: x.description, firstName: x.firstName, lastName: x.lastName, email: x.email }))
    });
+    /* update single entry jobs or candidates */
   router.post('/update/:_id', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     services.edit (endpoint,req.params._id, req.body)
