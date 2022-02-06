@@ -11,13 +11,17 @@ header a{
   text-align: left;
 }
 
-a {
+a{
   color: #ffa500;
   font-size: 20 px;
   padding: 14px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+p {
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
 }
 table, th, td {
   border: 1px solid #ffa500;
@@ -29,7 +33,10 @@ table, th, td {
 table{
   width: 100%;
 }
-.btn {
+a.btn1{
+  width:fit-content;
+}
+.btn, .btn1 {
   width: 20%;
   display:inline-block;
   padding:0.35em 1.2em;
@@ -43,7 +50,21 @@ table{
   text-align:center;
   transition: all 0.2s;
   }
+
   .btn:hover{
   color:#000000;
   background-color:#ffa500;
+  }
+  a.btn1:hover{
+    color:#000000;
+    background-color:#ffa500;
+    }
+  .list p, .list a{
+
+    display: inline-block;
+ 
+  }
+  fieldset{
+    border-color: #ffa500;
+    margin-top: 10 px;
   }

@@ -62,6 +62,9 @@ let services = {
     jobRegister(job, description){
         return post("jobs", { job, description })
           },
+    addCandidate(url, data){
+            return post(url, data)
+              },
   
 
 }

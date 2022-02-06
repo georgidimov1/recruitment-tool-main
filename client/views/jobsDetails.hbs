@@ -1,16 +1,25 @@
-<div>
+<fieldset>
+  <legend>Details</legend>
   <label>Job title:</label><br>
   <p> {{title}}</p> 
   <br>
   <label>Job description:</label>
   <br>
   <p>{{description}}<p>
-    <br>
-    <label>Candidates:</label>
-    {{#each candidates}}
-       <p>{{candidatesId}}</p>
+</fieldset>
+<fieldset>
+  <legend>Candidates</legend>
+    {{#each candidate}}
+     <div class="list">
+       <ul>
+         <li><a href='/candidates/{{_id}}'>{{firstName}} {{lastName}}</a><a class= "btn1" href='candidates/{{_id}}'>delete</a></li>
+       </ul>
+     </div>
     {{/each}}
-           <div>
+</fieldset>
+<fieldset>
+  <legend>Add</legend>
+        <div>
           <form action={{action}} method="POST">
             <br>
             <label id="add">Add candidates:</label>
@@ -22,4 +31,4 @@
             <button class="btn" type="submit" >ADD</button>
           </form>
         </div>
-</div>
+</fieldset>
