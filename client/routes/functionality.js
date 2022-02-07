@@ -52,8 +52,9 @@ router.get('/:_id/candidates', getCandidates, async function(req, res, next) {
     }
       )
   });
-router.post('/:_id/candidates', addCandidate, function(req, res, next) {
-    res.redirect('back');
+router.post('/:_id/candidates',addCandidate, function(req, res, next) {
+  let endpoint = req.originalUrl.split('/')[1]
+  res.redirect(`/${endpoint}/${req.params._id}/candidates`);
   });
 
 router.get('/:_id', function(req, res, next) {
@@ -61,5 +62,13 @@ router.get('/:_id', function(req, res, next) {
     services.getOne(endpoint, req.params._id)
     .then(x => res.render(`${endpoint}Details`, { action: x._id, title: x.title , description: x.description, firstName: x.firstName, lastName: x.lastName, email: x.email }))
    });
+router.get('/:_jid/candidates/:_cid', function(req, res, next) {
+  console.log(req.params._cid)
+    let endpoint = req.originalUrl.split('/')[1]
+    services.delete (endpoint, `${req.params._jid}/candidates/${req.params._cid}`)
+    .then(x=>console.log(x.status))
+    .catch(Error)
+res.redirect(`/${endpoint}/${req.params._jid}/candidates`);
+  });
  
   module.exports = router;
