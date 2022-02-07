@@ -1,6 +1,6 @@
 var express = require('express');
-const getCandidates = require('../midleware/getCandidates.js');
-const addCandidate = require('../midleware/addCandidate.js')
+const getCandidates = require('../middleware/getCandidates.js');
+const addCandidate = require('../middleware/addCandidate.js')
 var router = express.Router();
 var services = require('../services/services.js')
 
@@ -29,7 +29,7 @@ router.get('/delete/:_id', function(req, res, next) {
     .catch(Error)
       res.redirect(`/${endpoint}`);
   });
-  /* render single entry jobs or candidates */
+    /* render update form for single entry jobs or candidates */
 router.get('/update/:_id', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     services.getOne(endpoint, req.params._id)
@@ -47,28 +47,28 @@ router.get('/:_id/candidates', getCandidates, async function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     await services.getOne(endpoint, req.params._id)
     .then(x =>
-      {console.log(x)
+      {console.log("func")
       res.render(`${endpoint}`+`Details`, { action: `candidates`, title: x.title , description: x.description, candidate: x.candidates, firstName: x.firstName, lastName: x.lastName, email: x.email})
     }
       )
   });
 router.post('/:_id/candidates',addCandidate, function(req, res, next) {
-  let endpoint = req.originalUrl.split('/')[1]
-  res.redirect(`/${endpoint}/${req.params._id}/candidates`);
+    let endpoint = req.originalUrl.split('/')[1]
+    res.redirect(`/${endpoint}/${req.params._id}/candidates`);
   });
 
 router.get('/:_id', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
-    services.getOne(endpoint, req.params._id)
-    .then(x => res.render(`${endpoint}Details`, { action: x._id, title: x.title , description: x.description, firstName: x.firstName, lastName: x.lastName, email: x.email }))
+      services.getOne(endpoint, req.params._id)
+      .then(x => res.render(`${endpoint}Details`, { action: x._id, title: x.title , description: x.description, firstName: x.firstName, lastName: x.lastName, email: x.email }))
    });
+/* delete jobs candidate */
 router.get('/:_jid/candidates/:_cid', function(req, res, next) {
-  console.log(req.params._cid)
-    let endpoint = req.originalUrl.split('/')[1]
-    services.delete (endpoint, `${req.params._jid}/candidates/${req.params._cid}`)
-    .then(x=>console.log(x.status))
-    .catch(Error)
-res.redirect(`/${endpoint}/${req.params._jid}/candidates`);
+      let endpoint = req.originalUrl.split('/')[1]
+          services.delete (endpoint, `${req.params._jid}/candidates/${req.params._cid}`)
+          .then(x=>console.log(x.status))
+          .catch(console.error(Error))
+      res.redirect(`/${endpoint}/${req.params._jid}/candidates`);
   });
  
   module.exports = router;
