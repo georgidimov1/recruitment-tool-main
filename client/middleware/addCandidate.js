@@ -8,9 +8,13 @@ async function addCandidates(req, res, next){
             "candidateId": x._id
           }
                 services.addCandidate(url, data)
-                .then(Z => console.log(Z))
+                .then(Z =>{
+                    if(Z.status==!200){throw(Error)}
+                } )
+                .catch(Error)
     })
     .then(next())
+    .catch(Error)
 }
 
 

@@ -54,6 +54,7 @@ router.get('/:_id/candidates', getCandidates, async function(req, res, next) {
   });
 router.post('/:_id/candidates',addCandidate, function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
+    console.log(req.baseUrl)
     res.redirect(`/${endpoint}/${req.params._id}/candidates`);
   });
 
