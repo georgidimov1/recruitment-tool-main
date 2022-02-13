@@ -12,7 +12,11 @@
     {{#each candidate}}
      <div class="list">
        <ul>
-         <li><a href='/candidates/{{_id}}'>{{firstName}} {{lastName}}</a><a class= "btn1" href='candidates/{{_id}}'>delete</a></li>
+          <li>
+          <a class="candidate" href='/candidates/{{_id}}'>{{firstName}} {{lastName}}</a>
+          <a class= "btn1" href='/interviews'>interview</a>
+          <a class= "btn1" href='candidates/{{_id}}'>delete</a>
+          </li>
        </ul>
      </div>
     {{/each}}
