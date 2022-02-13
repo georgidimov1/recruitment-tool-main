@@ -8,7 +8,10 @@ var services = require('../services/services.js')
 router.get('/', function(req, res, next) {
   let endpoint = req.originalUrl.split('/')[1]
     services.getAll(endpoint)
-    .then(x => res.render(endpoint, { title: endpoint , data: x}))
+    .then(x => 
+      {res.render(endpoint, { title: endpoint , data: x})
+      console.log(x)}
+      )
     
   });
 

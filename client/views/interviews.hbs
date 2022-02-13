@@ -1,1 +1,19 @@
-<p>success</p>
+<div>
+<a class="btn"href='/jobs/create'>NEW Job</a>
+</div> 
+<table>
+  <tr>
+    <th><h2>Title</h2></th>
+    <th><h2>Description</h2></th>
+    <th colspan="3"><h2>Tools</h2></th>
+  </tr>
+  {{#each data}}
+  <tr>
+    <td>{{slot}}</td>
+    <td>{{candidateId}}</td>
+    <td><a href='/jobs/{{_id}}/candidates'>add candidate</a></td>
+    <td><a href='/jobs/update/{{_id}}'>edit</a></td>
+    <td><a href='/jobs/delete/{{_id}}'>delete</a></td>
+   </tr>
+  {{/each}}
+</table>
