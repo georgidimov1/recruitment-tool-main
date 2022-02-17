@@ -49,11 +49,16 @@ router.post('/update/:_id', function(req, res, next) {
 router.get('/:_id/candidates', getCandidates, async function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     await services.getOne(endpoint, req.params._id)
-    .then(x =>
-      {console.log("func")
-      res.render(`${endpoint}`+`Details`, { action: `candidates`, title: x.title , description: x.description, candidate: x.candidates, firstName: x.firstName, lastName: x.lastName, email: x.email})
-    }
-      )
+    .then(x => res.render(`${endpoint}`+`Details`, 
+    { action: `candidates`, 
+    title: x.title , 
+    description: x.description, 
+    candidate: x.candidates, 
+    firstName: x.firstName, 
+    lastName: x.lastName, 
+    email: x.email}
+    )
+    )
   });
 router.post('/:_id/candidates',addCandidate, function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]

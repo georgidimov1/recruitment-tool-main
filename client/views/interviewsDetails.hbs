@@ -8,26 +8,13 @@
   <p>{{description}}<p>
 </fieldset>
 <fieldset>
-  <legend>Candidates</legend>
-    {{#each candidate}}
-     <div class="list">
-       <ul>
-          <li>
-          <a class="candidate" href='/candidates/{{_id}}'>{{firstName}} {{lastName}}</a>
-          <a class= "btn1" href='candidates/{{_id}}'>delete</a>
-          </li>
-       </ul>
-     </div>
-    {{/each}}
-</fieldset>
-<fieldset>
-  <legend>Add</legend>
+  <legend>Add Interviews</legend>
         <div>
           <form action={{action}} method="POST">
             <br>
-            <label id="add">Add candidates:</label>
+            <label id="add">Add Interviews:</label>
             <select name="selected" id="add">
-              {{#each persons}}
+              {{#each candidate}}
               <option value={{_id}}>{{firstName}} {{lastName}}</option>
               {{/each}}
             </select>
