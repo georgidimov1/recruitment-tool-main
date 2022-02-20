@@ -9,7 +9,7 @@ async function addCandidates(req, res, next){
           }
                 services.addCandidate(url, data)
                 .then(Z =>{
-                    if(Z.status==!200){throw(Error)}
+                    if(Z.status!==200){throw(Error)}
                 } )
                 .catch(Error)
     })

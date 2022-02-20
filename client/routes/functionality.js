@@ -8,23 +8,23 @@ var services = require('../services/services.js')
 router.get('/', function(req, res, next) {
   let endpoint = req.originalUrl.split('/')[1]
     services.getAll(endpoint)
-    .then(x => 
-      {res.render(endpoint, { title: endpoint , data: x})
-      console.log(x)}
-      )
-    
+    .then(x => {
+      console.log(x)
+      res.render(endpoint, { title: endpoint , data: x})
+    })
   });
 
-router.get('/create', function(req, res, next) {
+  router.get('/create', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     res.render(`${endpoint}`+'Create', {action:`create`});
   });
 router.post('/create', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
-    services.postJobsData (endpoint, req.body)
+    services.post(endpoint, req.body)
     .catch(Error)
     res.redirect(`/${endpoint}`);
   });
+
 router.get('/delete/:_id', function(req, res, next) {
     let endpoint = req.originalUrl.split('/')[1]
     services.delete (endpoint, req.params._id)
@@ -79,5 +79,21 @@ router.get('/:_jid/candidates/:_cid', function(req, res, next) {
           .catch(console.error(Error))
       res.redirect(`/${endpoint}/${req.params._jid}/candidates`);
   });
- 
+  router.get('/:_jid/interviews/:_cid', function(req, res, next) {
+    let endpoint = req.originalUrl.split('/')[1]
+    let dataInterviews = {
+      "jobId": req.params._jid,
+      "candidateId": req.params._cid,
+      "slot": 1
+    }
+            services.post('interviews', dataInterviews)
+            .then(x=> {if(x.status==200){
+              services.delete (endpoint, `${req.params._jid}/candidates/${req.params._cid}`)
+              .then(x=>console.log(x.status))
+              .catch(console.error(Error))
+            }})
+            .catch(Error)
+  /
+    res.redirect(`/${endpoint}/${req.params._jid}/candidates`);
+}); 
   module.exports = router;

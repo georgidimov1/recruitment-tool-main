@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/jobs', functionality);
 app.use('/candidates',functionality);
-app.use('/interviews',functionality);
+app.use('/interviews', functionality);
 
 
 // catch 404 and forward to error handler

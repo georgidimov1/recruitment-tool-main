@@ -38,7 +38,7 @@ function del(endpoint) {
 }
 
 let services = {
-    postJobsData (endpoint, data){
+    post(endpoint, data){
         return post(endpoint, data)
     },
     getAll(endpoint){
